@@ -1,0 +1,14 @@
+{
+    "name": "thrishamahesh/event_management_system",
+    "description": "A PHP Event Management System",
+    "type": "project",
+    "license": "mit",
+    "authors": [
+        {
+            "name": "Thrisha",
+            "email": "thrishamahesh.9124@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
