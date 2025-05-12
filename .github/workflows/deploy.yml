@@ -21,17 +21,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Set up SonarQube Scanner
-        uses: SonarSource/sonarcloud-github-action@v1.1
-        with:
-          sonar-token: ${{ secrets.SONAR_TOKEN }}
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: thrisham/event-management:latest
+      - name: Set up SonarQube environment
+        run: echo "SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}" >> $GITHUB_ENV
 
       - name: Run SonarQube analysis
         run: |
@@ -40,3 +31,10 @@ jobs:
             -Dsonar.organization=your-org \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: thrisham/event-management:latest
