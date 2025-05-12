@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         COMPOSE_PROJECT_NAME = "event_mgmt"
-        PATH = "C:\\Windows\\System32;${env.PATH}"
+        
     }
 
     stages {
@@ -15,7 +15,11 @@ pipeline {
 
         stage('Build & Run Containers') {
             steps {
-                bat 'docker-compose down || true'
+                bat '''
+                IF EXIST docker-compose.yml (
+                    docker-compose down
+                )
+                '''
                 bat 'docker-compose build'
                 bat 'docker-compose up -d'
             }
