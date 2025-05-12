@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: event-management
-    env: docker
-    dockerfilePath: ./Dockerfile
-    repo: https://github.com/thrishamahesh/Event-Management
-    branch: main
-    plan: free
