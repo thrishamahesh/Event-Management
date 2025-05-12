@@ -8,30 +8,35 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/thrishamahesh/Event-Management.git'
+                git branch: 'main', url: 'https://github.com/thrishamahesh/Event-Management.git'
             }
         }
 
         stage('Build & Run Containers') {
             steps {
-                sh 'docker-compose down || true'
-                sh 'docker-compose build'
-                sh 'docker-compose up -d'
+                bat 'docker-compose down || true'
+                bat 'docker-compose build'
+                bat 'docker-compose up -d'
             }
         }
 
         // Optional: Add a health check or curl test here
         stage('Verify App Running') {
             steps {
-                sh 'sleep 10'  // Wait for containers to be ready
-                sh 'curl -f http://localhost:8000 || echo "App not responding"'
+                bat 'timeout /t 10 > NUL'  // Equivalent of sleep 10 in Windows
+                bat '''
+                curl -f http://localhost:8000 || (
+                    echo App not responding
+                    exit /b 1
+                )
+                '''
             }
         }
 
         // Optional: Add unit tests (if implemented)
         // stage('Run PHP Tests') {
         //     steps {
-        //         sh 'docker exec web ./vendor/bin/phpunit'
+        //         bat 'docker exec web ./vendor/bin/phpunit'
         //     }
         // }
 
@@ -40,7 +45,7 @@ pipeline {
     post {
         always {
             echo 'Cleaning up containers...'
-            sh 'docker-compose down'
+            bat 'docker-compose down'
         }
     }
 }
