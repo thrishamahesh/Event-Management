@@ -24,6 +24,11 @@ jobs:
       - name: Set up SonarQube environment
         run: echo "SONAR_TOKEN=${{ secrets.SONAR_TOKEN }}" >> $GITHUB_ENV
 
+      - name: Set up SonarCloud environment
+        uses: SonarSource/sonarcloud-github-action@v1.1
+        with:
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+
       - name: Run SonarQube analysis
         run: |
           sonar-scanner \
