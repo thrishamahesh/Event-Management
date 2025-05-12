@@ -21,19 +21,18 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Set up SonarCloud environment
-        uses: SonarSource/sonarcloud-github-action@v1.1
-        with:
-          organization: Thrisha Mahesh
-          projectKey: thrishamahesh
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Install Sonar Scanner
+        run: |
+          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+          unzip sonar-scanner-cli-5.0.1.3006-linux.zip
+          sudo mv sonar-scanner-5.0.1.3006-linux /opt/sonar-scanner
+          echo "/opt/sonar-scanner/bin" >> $GITHUB_PATH
 
       - name: Run SonarQube analysis
         run: |
           sonar-scanner \
-            -Dsonar.projectKey=your-project-key \
-            -Dsonar.organization=your-org \
+            -Dsonar.projectKey=thrishamahesh \
+            -Dsonar.organization=Thrisha Mahesh \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
