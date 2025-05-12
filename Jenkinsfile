@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         COMPOSE_PROJECT_NAME = "event_mgmt"
+        PATH = "C:\\Windows\\System32;${env.PATH}"
     }
 
     stages {
