@@ -10,6 +10,9 @@ services:
       - "8000:80"
     depends_on:
       - db
+      - sonarqube
+    environment:
+      SONARQUBE_HOST: http://sonarqube:9000
 
   db:
     image: mysql:5.7
@@ -25,5 +28,20 @@ services:
       - ./database/event_db.sql:/docker-entrypoint-initdb.d/event_db.sql
       - db_data:/var/lib/mysql
 
+  sonarqube:
+    image: sonarqube:latest
+    container_name: sonarqube
+    ports:
+      - "9000:9000"  # SonarQube web UI
+    environment:
+      - SONARQUBE_JDBC_URL=jdbc:mysql://db:3306/sonar
+      - SONARQUBE_JDBC_USERNAME=root
+      - SONARQUBE_JDBC_PASSWORD=rootpass
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+
 volumes:
   db_data:
+  sonarqube_data:
+  sonarqube_extensions:
