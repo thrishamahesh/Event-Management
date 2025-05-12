@@ -32,7 +32,7 @@ jobs:
         run: |
           sonar-scanner \
             -Dsonar.projectKey=thrishamahesh \
-            -Dsonar.organization=Thrisha Mahesh \
+            -Dsonar.organization=thrishamahesh_Event-Management \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
