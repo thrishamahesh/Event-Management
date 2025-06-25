@@ -1,32 +1,53 @@
-Free Download Source Code "Event_Management_System"
+🎉 Event Management System
 
-FIRST Download
+A web-based Event Management System developed to simplify the planning, booking, and management of events. Built using PHP, MySQL, HTML/CSS, and Bootstrap, this platform offers an intuitive interface for administrators and users to manage events efficiently.
 
-1.XAMPP
+🚀 Features
 
-2."TEXT EDITOR" NOTEPAD++ OR SUBLIME TEXT 3 / ETC.
+- 📝 Event Creation: Admins can add, update, or delete events with details like venue, date, and capacity.
+- 🎫 User Registration: Users can register and log in to book events.
+- 📅 Booking System: Users can browse available events and book their slots.
+- 📊 Admin Dashboard: Manage users, events, and view booking statistics.
+- 💬 Contact Form: Simple contact form for queries or feedback.
 
-3"Event_Management_System"
+🛠️ Tech Stack
 
-4. Download the zip file/ download winrar
+| Frontend     | Backend    | Database | Others          |
+|--------------|------------|----------|-----------------|
+| HTML5, CSS3, Bootstrap | PHP 7+     | MySQL     | Apache, XAMPP/WAMP |
 
-5. Extract the file and copy "Event_Management_System" folder
+🔧 Setup Instructions: 
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/thrishamahesh/Event-Management.git
+Import the database
 
-6.Paste inside root directory/ where you install xammp local disk C: drive D: drive E: paste: (for xampp/htdocs, 
+Open phpMyAdmin
 
-7. Open PHPMyAdmin (http://localhost/phpmyadmin)
+Create a new database (e.g., event_db)
 
-8. Create a database with name event_db
+Import the provided .sql file located in the project directory (if available)
 
-6. Import event_db.sql file(given inside the zip package in SQL file folder)
+Configure the database
 
-7.Run the script http://localhost/Event_Management_System
+Open db.php and update the database credentials:
 
+php
+Copy
+Edit
+$con = mysqli_connect("localhost", "root", "", "event_db");
+Run the project
 
-**LOGIN DETAILS** 
+Place the project folder inside your local server directory (htdocs for XAMPP).
+
+Start Apache and MySQL.
+Visit: http://localhost/Event-Management/
+
+👤 Roles
 Admin
-user: admin
-pass: admin123
+-Add/edit/delete events
+-View bookings and user list
 
-****** https:1sourcecodr.blogspot.com ******
-Subcribe my You tube Channel **** 1 Source code ****
+User
+-Register/login
+-Book and manage event reservations
